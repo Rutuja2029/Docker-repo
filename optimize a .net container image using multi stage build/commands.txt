@@ -1,0 +1,27 @@
+docker version
+docker container run hello-world
+git clone https://github.com/CodeWithPraveen/labs-docker-optimize.git
+ls
+cd labs-docker-optimize
+ls -R
+cat Dockerfile
+docker image build -t brezyweather:1.0 .
+docker image ls
+docker image inspect brezyweather:1.0
+docker image history brezyweather:1.0
+docker container run -d -p 8080:80 --name brezyweather-api brezyweather:1.0
+curl 'http://127.0.0.1:8080/weather
+
+docker stop container && docker rm container
+
+docker image build -t brezyweather:2.0 .
+docker image ls
+docker image inspect brezyweather:2.0
+docker image history brezyweather:2.0
+docker container run -d -p 8080:80 --name brezyweather-api brezyweather:2.0
+curl 'http://127.0.0.1:8080/weather
+
+#To clean all the resources
+docker container rm -f $(docker container ls -a -q)
+docker image rm -f $(docker image ls -a -q)
+docker system df

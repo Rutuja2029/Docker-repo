@@ -1,0 +1,20 @@
+1. Set up the Environment
+You will need a proper environment to work with Docker. Git and Docker are already installed and available in this Docker workspace. You will need to clone the BrezyWeather repository locally. The clone URL is available under the Documentation section.
+
+2. Build and Run the Unoptimized Image
+Verify the metadata of the current app's image. To check this, first, you need to build the image using brezyweather as the name and 1.0 as the tag. Once created, check the size of the image. Also, check the number of layers present in the image. Next, run a container instance with brezyweather-api as the name and a port mapping of host port 8080 to container port 80. Finally, execute the GET request for http://127.0.0.1:8080/weather request to check the container is running correctly.
+
+3. Optimize the Build Stage using Multi-Stage Build
+Add a build stage that refers to instructions for building the .NET project. Use build as the stage name. Next, add instructions to copy only the BrezyWeather.csproj file first and restore the Nuget packages to create a new layer. Finally, update the dotnet publish instruction to set the build configuration as Release mode. These changes will help optimize the image.
+
+4. Optimize the Final Stage to Reduce Image Size
+Add a new stage that starts from the .NET Runtime image. Next, include an instruction to copy the artifacts from the build stage's app folder to the final stage's app folder. Finally, add a .dockerignore file to exclude the temporary files and folders in the final image.
+
+These steps make it possible for the final image to be much smaller since it doesn't need to include all of the build tools in the SDK image.
+
+The final Dockerfile is available under the Assets section for reference.
+
+
+5. Build and Run the Multi-Stage Image
+You need to build with the name brezyweather and tag it with 2.0 to differentiate it from the unoptimized 1.0 image. Next, view each layer's layers and size in the newly created image. To validate the image's working, stop the existing brezyweather-api container and run a new instance with the brezyweather:2.0 image. Use the port mapping of 8080 to 80. Finally, verify the container by executing the GET http://127.0.0.1:8080/weather request to fetch weather forecast details using the cURL command.
+
