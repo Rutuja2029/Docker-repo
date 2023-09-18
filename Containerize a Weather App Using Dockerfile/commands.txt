@@ -1,0 +1,29 @@
+docker version
+docker container run hello-world
+git clone https://github.com/CodeWithPraveen/labs-docker-optimize.git
+ls
+cd labs-docker-optimize
+ls -R
+cat Dockerfile
+docker image build -t brezyweather:1.0 .
+docker image ls
+docker image inspect brezyweather:1.0
+docker image history brezyweather:1.0
+
+docker tag brezyweather:latest brezyweather:1.0.0
+docker images
+docker run -d brezyweather
+docker ps -a
+docker stop container
+#to map the different host port with container port 80
+docker container run -d -p 5000:80 --name brezyweather-api brezyweather:1.0.0
+
+curl -verbose 'http://127.0.0.1:5000/weather'
+curl -v --request GET 'http://127.0.0.1:5000/weather'
+
+docker stop brezyweather-api
+# to delete stopped containers which you arn't using
+docker container prune
+# to delete all images
+docker system prune --all
+docker ps

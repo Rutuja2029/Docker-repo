@@ -5,6 +5,7 @@ ls
 cd labs-docker-optimize
 ls -R
 cat Dockerfile
+#Note the presence of a dot (.) at the end of the command that denotes the current folder.
 docker image build -t brezyweather:1.0 .
 docker image ls
 docker image inspect brezyweather:1.0

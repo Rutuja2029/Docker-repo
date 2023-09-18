@@ -1,9 +1,3 @@
-# Task-1
-My team is using a Dockerfile to containerize a .NET API app. 
-However, the manager is concerned about the image size being 1.5 GB. 
-This higher image size has led to performance issues during the build process and at production. 
-I'm expected to optimize the image using best practices in building a Docker image. 
-I must split the Dockerfile build into multiple stages to form a layered approach to 
-building the image. Also, I need to use .NET Runtime for the final stage of the image instead 
-of the existing .NET SDK image. Finally, I must build and compare the image size with
-the original to ensure the final image is optimized.
+# Task-2
+
+You are a cloud developer in the team that needs to provide services for a weather application, namely BrezyWeather. Since the product is in the initial stage, the product manager has not yet concluded on the hosting platform. The manager intends to develop the Web API as a Docker image to support multiple deployment environments and enable predictable outcomes. You are expected to add container support for the existing API project. Also, you must configure the build steps in a Dockerfile. Once done, you should build and create the respective Docker image and container. Moreover, you need to validate that the newly created Docker image is working as expected using cURL commands.
